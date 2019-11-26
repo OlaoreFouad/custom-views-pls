@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <EditText
+	android:id="@+id/fineInput"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/edit_text_bg"
+	android:padding="10dp"
+	android:textColor="@android:color/black" />
+
+  <View
+	android:id="@+id/fineFocusedIndicator"
+	android:layout_width="match_parent"
+	android:layout_height="3dp"
+	android:background="#f7f7f7" />
+
+</merge>
