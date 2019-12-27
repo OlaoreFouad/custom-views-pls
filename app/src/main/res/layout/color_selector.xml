@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <ImageView
-	android:id="@+id/colorSelectorArrowLeft"
-	android:layout_width="50dp"
-	android:layout_height="50dp"
-	android:src="@drawable/arrow_left" />
+    <ImageView
+            android:id="@+id/colorSelectorArrowLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:src="@drawable/arrow_left"/>
 
-  <View
-	android:id="@+id/colorContainer"
-	android:layout_width="40dp"
-	android:layout_height="40dp"
-	android:background="@color/colorPrimary" />
+    <View
+            android:id="@+id/colorContainer"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="14dp"
+            android:background="@color/colorPrimary"/>
 
-  <ImageView
-	android:id="@+id/colorSelectorArrowRight"
-	android:layout_width="50dp"
-	android:layout_height="50dp"
-	android:src="@drawable/arrow_right" />
+    <ImageView
+            android:id="@+id/colorSelectorArrowRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="14dp"
+            android:src="@drawable/arrow_right"/>
 
-  <CheckBox
-	android:id="@+id/colorSelectorCheckbox"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content" />
+    <CheckBox
+            android:id="@+id/colorSelectorCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"/>
 
-  <TextView
-	android:id="@+id/colorSelectorState"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:text="@string/enabled_text"
-	android:textSize="24sp" />
+    <TextView
+            android:id="@+id/colorSelectorState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enabled_text"
+            android:layout_gravity="center_vertical"/>
 
 </merge>
