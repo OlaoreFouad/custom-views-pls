@@ -12,8 +12,9 @@ class ColorSelector @JvmOverloads
     constructor(ctx: Context, attributeSet: AttributeSet? = null, defStyle: Int = 0, defRes: Int = 0)
     : LinearLayout(ctx, attributeSet, defStyle, defRes) {
 
-    private val colors = listOf(Color.RED, Color.YELLOW, Color.DKGRAY, Color.BLACK, Color.CYAN, Color.GREEN)
+    private val colors = listOf(Color.RED, Color.YELLOW, Color.DKGRAY, Color.BLACK, Color.CYAN, Color.GREEN, Color.GRAY)
     private var selectedColorIndex = 0
+    private var function: ((Int) -> Unit)? = null
 
     init {
         orientation = HORIZONTAL
@@ -21,15 +22,11 @@ class ColorSelector @JvmOverloads
         inflater.inflate(R.layout.color_selector, this)
 
         setColor()
+        colorSelectorCheckbox.isChecked = true
 
-        colorSelectorArrowLeft.setOnClickListener {
-            onLeftArrowSelected()
-        }
+        colorSelectorArrowLeft.setOnClickListener { onLeftArrowSelected() }
 
-        colorSelectorArrowRight.setOnClickListener {
-            onRightArrowSelected()
-        }
-
+        colorSelectorArrowRight.setOnClickListener { onRightArrowSelected() }
     }
 
     fun onLeftArrowSelected() {
@@ -42,6 +39,10 @@ class ColorSelector @JvmOverloads
         setColor()
     }
 
+    fun setOnColorSelectedListener(block: (Int) -> Unit) {
+        function = block
+    }
+
     fun onRightArrowSelected() {
         if (selectedColorIndex == colors.lastIndex) {
             selectedColorIndex = 0
@@ -52,8 +53,16 @@ class ColorSelector @JvmOverloads
         setColor()
     }
 
-    fun setColor() {
+    private fun setColor() {
         colorContainer.setBackgroundColor(colors[selectedColorIndex])
+        if (colorSelectorCheckbox.isChecked) {
+            function?.invoke(colors[selectedColorIndex])
+        }
+    }
+
+    fun setSelectedColor(color: Int) {
+        selectedColorIndex = colors.indexOf(color)
+        setColor()
     }
 
 }

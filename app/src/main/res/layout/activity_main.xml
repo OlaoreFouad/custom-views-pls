@@ -6,31 +6,33 @@
   android:layout_height="match_parent"
   tools:context=".MainActivity">
 
-  <dev.iamfoodie.customviewskotlin.views.ColorSelector
-	android:layout_width="wrap_content"
-	android:paddingTop="10dp"
-	android:id="@+id/colorSelector"
-	app:layout_constraintTop_toTopOf="parent"
-	app:layout_constraintStart_toStartOf="parent"
-	android:layout_height="wrap_content"/>
-
-  <dev.iamfoodie.customviewskotlin.views.FineEditText
+  <Button
 	android:layout_width="match_parent"
-	app:layout_constraintTop_toBottomOf="@id/colorSelector"
 	android:layout_marginStart="20dp"
 	android:layout_marginEnd="20dp"
+	app:layout_constraintTop_toTopOf="parent"
+	android:layout_marginTop="10dp"
+	android:text="Color Selector"
+	android:id="@+id/colorSelectorButton"
+	android:layout_height="wrap_content" />
+
+  <dev.iamfoodie.customviewskotlin.views.FineEditText
 	android:id="@+id/fineEditText"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginStart="20dp"
 	android:layout_marginTop="20dp"
+	android:layout_marginEnd="20dp"
 	app:layout_constraintEnd_toEndOf="parent"
 	app:layout_constraintStart_toStartOf="parent"
-	android:layout_height="wrap_content"/>
+	app:layout_constraintTop_toBottomOf="@id/colorSelectorButton" />
 
   <dev.iamfoodie.customviewskotlin.views.WhatsappInput
 	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
 	android:layout_marginStart="5dp"
-	android:layout_marginEnd="5dp"
 	android:layout_marginTop="10dp"
-	app:layout_constraintTop_toBottomOf="@id/fineEditText"
-	android:layout_height="wrap_content"/>
+	android:layout_marginEnd="5dp"
+	app:layout_constraintTop_toBottomOf="@id/fineEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
