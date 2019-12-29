@@ -1,4 +1,15 @@
 <resources>
   <string name="app_name">Custom Views Kotlin</string>
   <string name="enabled_text">Enabled</string>
+
+  <string-array name="color_array">
+    <item>#000075</item>
+    <item>#f032e6</item>
+    <item>#4363d8</item>
+    <item>#3cb44b</item>
+    <item>#bfef45</item>
+    <item>#e6194B</item>
+    <item>#f58231</item>
+  </string-array>
+
 </resources>

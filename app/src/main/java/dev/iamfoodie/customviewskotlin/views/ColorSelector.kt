@@ -12,11 +12,20 @@ class ColorSelector @JvmOverloads
     constructor(ctx: Context, attributeSet: AttributeSet? = null, defStyle: Int = 0, defRes: Int = 0)
     : LinearLayout(ctx, attributeSet, defStyle, defRes) {
 
-    private val colors = listOf(Color.RED, Color.YELLOW, Color.DKGRAY, Color.BLACK, Color.CYAN, Color.GREEN, Color.GRAY)
+    private var colors = listOf(Color.RED, Color.YELLOW, Color.DKGRAY, Color.BLACK, Color.CYAN, Color.GREEN, Color.GRAY)
     private var selectedColorIndex = 0
     private var function: ((Int) -> Unit)? = null
 
     init {
+
+        val attributes = ctx.obtainStyledAttributes(attributeSet, R.styleable.ColorSelector)
+
+        colors = attributes.getTextArray(R.styleable.ColorSelector_colors)
+            .map { Color.parseColor(it.toString()) }
+        selectedColorIndex = attributes.getInteger(R.styleable.ColorSelector_defaultIndex, 0)
+
+        attributes.recycle()
+
         orientation = HORIZONTAL
         val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         inflater.inflate(R.layout.color_selector, this)
@@ -29,7 +38,7 @@ class ColorSelector @JvmOverloads
         colorSelectorArrowRight.setOnClickListener { onRightArrowSelected() }
     }
 
-    fun onLeftArrowSelected() {
+    private fun onLeftArrowSelected() {
         if (selectedColorIndex == 0) {
             selectedColorIndex = colors.lastIndex
         } else {
@@ -43,7 +52,7 @@ class ColorSelector @JvmOverloads
         function = block
     }
 
-    fun onRightArrowSelected() {
+    private fun onRightArrowSelected() {
         if (selectedColorIndex == colors.lastIndex) {
             selectedColorIndex = 0
         } else {

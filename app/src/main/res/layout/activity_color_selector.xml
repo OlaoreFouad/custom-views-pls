@@ -10,6 +10,8 @@
 	android:layout_width="match_parent"
 	android:id="@+id/color_selector"
 	app:layout_constraintTop_toTopOf="parent"
+	app:colors="@array/color_array"
+	app:defaultIndex="2"
 	android:layout_height="wrap_content"/>
 
   <Button
