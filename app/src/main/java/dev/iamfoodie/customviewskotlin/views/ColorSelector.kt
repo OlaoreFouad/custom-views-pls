@@ -3,6 +3,7 @@ package dev.iamfoodie.customviewskotlin.views
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import dev.iamfoodie.customviewskotlin.R
@@ -70,7 +71,7 @@ class ColorSelector @JvmOverloads
     }
 
     fun setSelectedColor(color: Int) {
-        selectedColorIndex = colors.indexOf(color)
+        selectedColorIndex = if (colors.indexOf(color) < 0) 0 else colors.indexOf(color)
         setColor()
     }
 
