@@ -1,6 +1,7 @@
 package dev.iamfoodie.customviewskotlin
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,5 +26,10 @@ class ColorSelectorActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK, intent)
             finish()
         }
+
+        color_slider.addListener { selectedColor ->
+            color_slider_result.setBackgroundColor(selectedColor)
+        }
+
     }
 }
