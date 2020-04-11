@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.core.content.ContextCompat
@@ -18,8 +19,8 @@ class ColorSlider @JvmOverloads
     private var colors: ArrayList<Int>
     private val noColorDrawable: Drawable
     private val listeners: ArrayList<((Int) -> Unit)> = arrayListOf()
-    private val w = 48f
-    private val h = 48f
+    private val w = getPixelValueFromDp(16f)
+    private val h = getPixelValueFromDp(16f)
     private val halfW = if (w >= 0) w/2 else 1f
     private val halfH = if (h >= 0) h/2 else 1f
     private val paint = Paint()
@@ -39,7 +40,7 @@ class ColorSlider @JvmOverloads
         progressTintList = ContextCompat.getColorStateList(context, android.R.color.transparent)
         progressBackgroundTintList = ContextCompat.getColorStateList(context, android.R.color.transparent)
         thumb = ctx.getDrawable(R.drawable.ic_arrow_down)
-        setPadding(paddingLeft + 10, paddingTop, paddingRight, paddingBottom + 100)
+        setPadding(paddingLeft + 10, paddingTop, paddingRight, paddingBottom + getPixelValueFromDp(32f).toInt())
         noColorDrawable = ctx.getDrawable(R.drawable.ic_no_color)!!
 
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
@@ -67,9 +68,9 @@ class ColorSlider @JvmOverloads
         canvas?.let {
             val count = colors.size
             val saveCount = canvas.save()
-            canvas.translate(paddingLeft.toFloat(), (height / 2).toFloat())
+            canvas.translate(paddingLeft.toFloat(), (height / 2).toFloat() + getPixelValueFromDp(16f))
             for (i in 0 until count) {
-                val spacing = (width - paddingLeft - paddingRight) / count
+                val spacing = (width - paddingLeft - paddingRight) / (count-1).toFloat()
 
                 if (i == 0) {
                     val drawableWidth = noColorDrawable.intrinsicWidth
@@ -92,6 +93,12 @@ class ColorSlider @JvmOverloads
 
     fun addListener(listener: (Int) -> Unit) {
         listeners.add(listener)
+    }
+
+    private fun getPixelValueFromDp(value: Float): Float {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, value, ctx.resources.displayMetrics
+        )
     }
 
 }
